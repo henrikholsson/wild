@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~/henrik</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0d0d0d;
+    --bg-card: #131313;
+    --accent: #d4842a;
+    --text: #999;
+    --text-bright: #bbb;
+    --text-dim: #505050;
+    --border: #1c1c1c;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* NAV */
+  nav {
+    margin-bottom: 2rem;
+    font-size: 12px;
+  }
+
+  nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--accent);
+  }
+
+  nav .sep {
+    color: var(--text-dim);
+    margin: 0 0.4rem;
+  }
+
+  /* HEADER */
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .header h1 {
+    color: var(--text-bright);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .header h1 .prompt {
+    color: var(--accent);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .header .bio {
+    margin-top: 0.4rem;
+    color: var(--text);
+  }
+
+  .header .bio .hl { color: var(--accent); }
+
+  .tags {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 11px;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 0.1rem 0.4rem;
+  }
+
+  /* HEADER LAYOUT */
+  .header-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .header-info { flex: 1; }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(60%) contrast(1.1);
+  }
+
+  .avatar:hover {
+    filter: grayscale(0%);
+  }
+
+  /* FEATURED IMAGE */
+  .featured-img {
+    width: 100%;
+    border: 1px solid var(--border);
+    margin-top: 0.6rem;
+    object-fit: cover;
+    max-height: 180px;
+    filter: grayscale(40%) contrast(1.05);
+  }
+
+  .featured-img:hover {
+    filter: grayscale(0%);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    color: var(--accent);
+    font-size: 11px;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* BLOG LIST */
+  .post-list { list-style: none; }
+
+  .post-list li {
+    padding: 0.3rem 0;
+    display: flex;
+    gap: 0.8rem;
+    align-items: baseline;
+    font-size: 13px;
+  }
+
+  .post-date {
+    color: var(--text-dim);
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .post-tag {
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .post-title {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .post-title:hover {
+    color: var(--text-bright);
+  }
+
+  /* PROJECT CARDS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    padding: 1rem;
+    background: var(--bg-card);
+  }
+
+  .project-card:hover {
+    border-color: #2a2a2a;
+  }
+
+  .project-card h3 {
+    color: var(--text-bright);
+    font-size: 13px;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-card p {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .project-card .tech {
+    margin-top: 0.4rem;
+    font-size: 10px;
+    color: var(--accent);
+  }
+
+  /* PACKAGES */
+  .packages { font-size: 12px; }
+
+  .packages .line { padding: 0.1rem 0; }
+  .packages .pkg-name { color: var(--text-bright); }
+  .packages .pkg-ver { color: var(--accent); }
+  .packages .pkg-desc { color: var(--text-dim); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .post-list li { flex-wrap: wrap; gap: 0.2rem; }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <a href="#" class="active">home</a>
+    <span class="sep">/</span>
+    <a href="#">blog</a>
+    <span class="sep">/</span>
+    <a href="#">projects</a>
+    <span class="sep">/</span>
+    <a href="#">about</a>
+  </nav>
+
+  <div class="header">
+    <div class="header-row">
+      <div class="header-info">
+        <h1><span class="prompt">&gt;</span> henrik olsson<span class="cursor"></span></h1>
+        <p class="bio">
+          teknolog og utvikler. bygger ting med <span class="hl">kode</span>, loddetinn og kaffe.
+        </p>
+        <div class="tags">
+          <span class="tag">react</span>
+          <span class="tag">typescript</span>
+          <span class="tag">electronics</span>
+          <span class="tag">gaming</span>
+          <span class="tag">linux</span>
+        </div>
+      </div>
+      <img src="https://i.pravatar.cc/160?img=68" alt="avatar" class="avatar">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">siste innlegg</div>
+    <ul class="post-list">
+      <li>
+        <span class="post-date">2026-03-15</span>
+        <span class="post-tag">[hw]</span>
+        <a href="#" class="post-title">Mekanisk makropad med RP2040</a>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&q=80" alt="featured" class="featured-img">
+      </li>
+      <li>
+        <span class="post-date">2026-03-08</span>
+        <span class="post-tag">[code]</span>
+        <a href="#" class="post-title">React Server Components — verdt hypen?</a>
+      </li>
+      <li>
+        <span class="post-date">2026-02-21</span>
+        <span class="post-tag">[hw]</span>
+        <a href="#" class="post-title">Retro-emulering på Orange Pi 5</a>
+      </li>
+      <li>
+        <span class="post-date">2026-02-10</span>
+        <span class="post-tag">[note]</span>
+        <a href="#" class="post-title">Notater fra NDC Oslo 2026</a>
+      </li>
+      <li>
+        <span class="post-date">2026-01-28</span>
+        <span class="post-tag">[code]</span>
+        <a href="#" class="post-title">Mitt Neovim-setup for 2026</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">prosjekter</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>homelab-dashboard</h3>
+        <p>Monitorering av hjemmeservere og Docker-containere.</p>
+        <div class="tech">react · go · prometheus</div>
+      </div>
+      <div class="project-card">
+        <h3>keeb-firmware</h3>
+        <p>Custom firmware for split ergo keyboard.</p>
+        <div class="tech">c · zmk · kicad</div>
+      </div>
+      <div class="project-card">
+        <h3>pixelsort-cli</h3>
+        <p>CLI for glitch art pixel sorting.</p>
+        <div class="tech">rust · cli</div>
+      </div>
+      <div class="project-card">
+        <h3>dotfiles</h3>
+        <p>Arch, i3wm, Neovim, kitty config.</p>
+        <div class="tech">bash · lua · toml</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">stack</div>
+    <div class="packages">
+      <div class="line"><span class="pkg-name">typescript</span> <span class="pkg-ver">5.x</span> <span class="pkg-desc">// primærspråk</span></div>
+      <div class="line"><span class="pkg-name">react</span> <span class="pkg-ver">19.x</span> <span class="pkg-desc">// frontend</span></div>
+      <div class="line"><span class="pkg-name">go</span> <span class="pkg-ver">1.22</span> <span class="pkg-desc">// backend & cli</span></div>
+      <div class="line"><span class="pkg-name">rust</span> <span class="pkg-ver">nightly</span> <span class="pkg-desc">// ytelse</span></div>
+      <div class="line"><span class="pkg-name">docker</span> <span class="pkg-ver">latest</span> <span class="pkg-desc">// containere</span></div>
+      <div class="line"><span class="pkg-name">linux</span> <span class="pkg-ver">6.x</span> <span class="pkg-desc">// btw i use arch</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>henrik olsson — 2026</span>
+    <span><a href="#">github</a> · <a href="#">linkedin</a> · <a href="#">rss</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
