@@ -3,9 +3,8 @@ export default function Footer() {
     <footer>
       <span>henrik hole — 2026</span>
       <span>
-        <a href="https://github.com">github</a> ·{' '}
-        <a href="https://linkedin.com">linkedin</a> ·{' '}
-        <a href="/rss">rss</a>
+        <a href="https://github.com/henrikholsson">github</a> ·{' '}
+        <a href="https://linkedin.com/in/henrikholsson/">linkedin</a> ·{' '}
       </span>
     </footer>
   )

@@ -4,7 +4,7 @@ import { projects } from '../data/projects'
 
 export default function Home() {
   return (
-    <>
+    <>  
       <div className="section">
         <ul className="post-list">
           {posts.slice(0, 5).map((post) => (
